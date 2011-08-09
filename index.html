@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <script>
+            window.onload = function() {
+                if( "sandbox" in document.createElement("iframe") ) {
+                    document.getElementById( "support" ).innerHTML = "Your browser does support the sandbox attribute, congratulations!";   
+                }
+                
+                var checkboxes = document.getElementsByTagName( "input" );
+                for( i = 0; i < checkboxes.length; i++ )
+                {
+                    checkboxes[i].addEventListener("click", reloadSandboxedFrame );
+                }
+            };
+            
+            function reloadSandboxedFrame() {
+                var checkboxes = document.getElementsByTagName( "input" );
+                var sandbox = "";
+                for( i = 0; i < checkboxes.length; i++ )
+                {
+                    if( checkboxes[i].checked ) {
+                        sandbox += checkboxes[i].value + " ";
+                    }
+                }
+                
+                var iframe = document.getElementById( "theFrame" );
+                iframe.setAttribute( "sandbox", sandbox );
+                iframe.setAttribute( "src", "untrusted.html" );
+            }
+        </script>
+    </head>
+    <body>
+        <h1>HTML5 IFrame Sandbox Demo</h1>
+        <article>
+            The site contains the untrusted.html page as &lt;iframe&gt; tag.
+            <h3 id="support">Your browser does not support the sandbox attribute!</h3>
+        </article>
+        <section>
+            <input name="allowJavaScript" type="checkbox" value="allow-scripts" />Allow JavaScript<br/>
+            <input name="allowForms" type="checkbox" value="allow-forms" />Allow Forms<br/>
+            <input name="allowSameOrigin" type="checkbox" value="allow-same-origin" />Allow Same Origin<br/>
+            <input name="allowTopNavigation" type="checkbox" value="allow-top-navigation" />Allow Top Navigation<br/>
+            <input name="allowPopups" type="checkbox" value="ms-allow-popups" />Allow Popups (Just IE10)<br/>            
+        </section>
+        <iframe id="theFrame" sandbox frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="untrusted.html" width="100%" height="600"></iframe>
+    </body>
+</html>
