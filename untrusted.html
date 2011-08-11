@@ -13,7 +13,6 @@
                 
                 storeButton.addEventListener( "click", storeContent );
                 loadButton.addEventListener( "click", loadContent );
-                
             };
             
             function storeContent() {
@@ -26,7 +25,6 @@
                 var content = localStorage.getItem( "theContent" );
                 document.getElementById( "storedContent" ).innerHTML = content;
             }
-            
         </script>
     </head>
     <body>
@@ -46,6 +44,9 @@
             <input id="contentToStore" type="text"/>
             <button id="storeContent">Store Content</button>
             <button id="loadContent">Load Content</button>
+            <div>
+                <button id="callParent">Call Parent</button>
+            </div>
         </section>
         <h2>Top Navigation?</h2>
         <section>
@@ -58,6 +59,10 @@
             <article>
                 Open this <a href="http://kouder.net" target="_blank">link</a> in a new window.
             </article>
+        </section>
+        <h2>Proof of concept</h2>
+        <section>
+            <a id="doEvil" href="#">Do Evil!</a>
         </section>
     </body>
 </html>
