@@ -1,3 +1,7 @@
+@{
+    var username = Request["Username"];
+}
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -29,13 +33,17 @@
         </script>
     </head>
     <body>
-        <h1>Untrusted.html</h1>
+        <h1>Untrusted.cshtml</h1>
         <h2>JavaScript enabled?</h2>
         <section><article id="javascriptEnabled">No, JavaScript is not enabled</article></section>
         <h2>Forms allowed?</h2>
         <section>
-            <form action="untrusted.html">
+            <form action="untrusted.cshtml">
                 <input type="text" name="username" />
+                @if( !string.IsNullOrEmpty( username ) ) 
+                {
+                   <div>Value @username was submitted!</div>
+                }
                 <input id="formSubmit" type="submit"/>
             </form>
         </section>
